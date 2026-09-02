@@ -1,0 +1,22 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "model": "opencode/mimo-v2.5-free",
+  "permission": {
+    "*": "allow"
+  },
+  "plugin": [
+    [
+      "./src/index.ts",
+      {
+        "enabled": true,
+        "contextThreshold": 0.5,
+        "hardCeiling": 0.75,
+        "assumedContextLimit": 200000,
+        "handoffDir": ".dev",
+        "planFile": ".dev/plan/active-plan.md",
+        "minTurnsBetweenHandoffs": 3,
+        "logging": true
+      }
+    ]
+  ]
+}

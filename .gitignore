@@ -1,0 +1,7 @@
+/.dev
+node_modules/
+dist/
+*.log
+.opencode/node_modules/
+.opencode/package-lock.json
+.smoke/
