@@ -87,7 +87,7 @@ Steps:
 3. After continuation, do WP-2: write ${doneFile} containing exactly the two letters ok and nothing else. Do not mark WP-2 done in the plan.
 4. Reply SMOKE_DONE.
 
-Do not edit README, src/, or .dev/plan. Do not wait for a human. Do not keep re-reading the handoff file in a loop.`
+Do not edit README, src/, or .opencode/plan. Do not wait for a human. Do not keep re-reading the handoff file in a loop.`
 
 const result = spawnSync(
   opencode,
@@ -154,8 +154,8 @@ const report = {
   plan: existsSync(planFile) ? readFileSync(planFile, "utf8") : null,
 }
 
-mkdirSync(join(root, ".dev/spike-evidence"), { recursive: true })
-write(join(root, ".dev/spike-evidence/smoke-report.json"), JSON.stringify(report, null, 2))
+mkdirSync(join(root, ".smoke-reports"), { recursive: true })
+write(join(root, ".smoke-reports/smoke-report.json"), JSON.stringify(report, null, 2))
 
 if (failures.length > 0) {
   console.error(JSON.stringify(report, null, 2))

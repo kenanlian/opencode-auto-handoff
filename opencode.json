@@ -12,8 +12,8 @@
         "contextThreshold": 0.5,
         "hardCeiling": 0.75,
         "assumedContextLimit": 200000,
-        "handoffDir": ".dev",
-        "planFile": ".dev/plan/active-plan.md",
+        "handoffDir": ".opencode/handoff",
+        "planFile": ".opencode/plan/active-plan.md",
         "minTurnsBetweenHandoffs": 3,
         "logging": true
       }

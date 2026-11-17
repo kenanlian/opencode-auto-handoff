@@ -21,15 +21,15 @@ Tests added: `test/cycle.test.ts`, `test/plugin-hooks.test.ts` (fake events: `to
 
 ## What shipped
 
-- Spike report with command-level evidence: `docs/spike-report.md`, logs in `.dev/spike-evidence/`
+- Spike report with command-level evidence: `docs/spike-report.md`, historical logs retained externally; new probes write `.spike-evidence/`
 - Plugin: `src/` (TypeScript strict, zero runtime dependencies), including `src/cycle.ts`
 - Bundled templates: `templates/handoff-prompt.md`, `templates/continuation-prompt.md`
 - Unit tests: `test/machine.test.ts`, `test/core.test.ts`, `test/cycle.test.ts`, `test/plugin-hooks.test.ts`
 - Smoke: `scripts/smoke.ts` (exit 0 + WP-2 artifact + continuation log + once-only clear)
-- `opencode.json` (this repo: `handoffDir` = `.dev`, `planFile` = `.dev/plan/active-plan.md`)
+- `opencode.json` (this repo: `handoffDir` = `.opencode/handoff`, `planFile` = `.opencode/plan/active-plan.md`)
 - `opencode.example.json` (generic defaults, no personal paths in plugin code)
 - README.md
-- Dogfood plan: `.dev/plan/active-plan.md`, `.dev/execution-summary.md`
+- Dogfood plan: `.opencode/plan/active-plan.md`, historical execution summary retained outside the repository (not a development prerequisite)
 
 ## Spike conclusions (short)
 
@@ -79,17 +79,17 @@ Temporarily set in `opencode.json` plugin options:
 - `contextThreshold`: `0.0001`
 - `minTurnsBetweenHandoffs`: `0`
 
-Ensure `.dev/plan/active-plan.md` has at least one WP marked done (`- [x] **WP-1**` or table `done`/`verified`).
+Ensure `.opencode/plan/active-plan.md` has at least one WP marked done (`- [x] **WP-1**` or table `done`/`verified`).
 
 ```bash
 /opt/homebrew/bin/opencode --print-logs --log-level INFO run --auto --format json \
   --title accept-B \
-  "Follow plugin handoff instructions if injected. If asked to write a handoff file, write that exact path, then continue WP-2 by creating .dev/accept-b-continued.txt with the word ok. Do not wait for a human."
+  "Follow plugin handoff instructions if injected. If asked to write a handoff file, write that exact path, then continue WP-2 by creating .smoke/accept-b-continued.txt with the word ok. Do not wait for a human."
 ```
 
-Expect: `handoff-NNN-*.md` under `.dev/`, `<!-- handoff n=… -->` in the plan file, logs `handoff-requested` → `handoff-written` → `messages-cleared` / `continuation-injected` (each once per plugin handoff). WP-2 artifact if the prompt asks for one. Process exits 0.
+Expect: `handoff-NNN-*.md` under `.opencode/handoff/`, `<!-- handoff n=… -->` in the plan file, logs `handoff-requested` → `handoff-written` → `messages-cleared` / `continuation-injected` (each once per plugin handoff). WP-2 artifact if the prompt asks for one. Process exits 0.
 
-Or: `npm run smoke` (temp project; requires exit 0, `done-wp2.txt` with `ok`, `continuation-injected`, and `messages-cleared` == `handoff-written`; report at `.dev/spike-evidence/smoke-report.json`).
+Or: `npm run smoke` (temp project; requires exit 0, `done-wp2.txt` with `ok`, `continuation-injected`, and `messages-cleared` == `handoff-written`; report at `.smoke-reports/smoke-report.json`).
 
 ### C — Metering
 

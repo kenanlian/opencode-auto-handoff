@@ -1,5 +1,7 @@
 # Spike report: opencode-auto-handoff on 1.18.25
 
+> Historical evidence: `.dev` paths and option values below describe the original experiment only, not current setup. Do not recreate that alias. Current configuration uses `.opencode/handoff` and `.opencode/plan`; new probe output goes to `.spike-evidence/`, and smoke reports to `.smoke-reports/`. Original logs remain archived externally.
+
 **Date:** 2026-09-02  
 **Host binary:** `/opt/homebrew/bin/opencode` **1.18.25** (Homebrew stable)  
 **Probe:** `.opencode/plugins/spike-probe.ts` (named export, later moved to `spike/`)  

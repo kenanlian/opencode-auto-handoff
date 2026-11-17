@@ -1,5 +1,7 @@
 # opencode-auto-handoff
 
+Development records no longer require a companion-directory link. Smoke diagnostics are retained in `.smoke-reports/smoke-report.json`; temporary smoke work remains in `.smoke/`. Historical records are archived outside this checkout.
+
 OpenCode **1.18.x** plugin that, on long tasks, performs **handoff → drop active model context → continue** while keeping the **same process PID and session id**.
 
 Trigger is **two-sided**: context occupancy must exceed a threshold **and** a work-package (WP) boundary must have just completed. A **hard ceiling** fires even mid-WP (the model is told to finish and persist the current WP first). Occupancy uses the provider’s usage on the latest assistant message, never a character heuristic.
@@ -70,7 +72,7 @@ Human-readable markdown. The plugin understands:
 - [ ] **WP-4** Later
 ```
 
-**Status tables** (aligned with `.dev/plan` execution files)
+**Status tables** (aligned with `.opencode/plan` execution files)
 
 ```markdown
 | ID | Status | Notes |
@@ -85,7 +87,7 @@ A **WP boundary** is a WP whose status **became** done-like since the last snaps
 Handoffs are recorded as HTML comments (and a `## Handoffs` section is created if needed):
 
 ```html
-<!-- handoff n=1 file=.dev/handoff-001-….md ts=2026-09-02T02:00:00.000Z -->
+<!-- handoff n=1 file=.opencode/handoff/handoff-001-….md ts=2026-09-02T02:00:00.000Z -->
 ```
 
 ## Handoff template

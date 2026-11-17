@@ -1,7 +1,7 @@
 import { appendFileSync, mkdirSync } from "node:fs"
 import { join } from "node:path"
 
-const dir = join(process.cwd(), ".dev/spike-evidence")
+const dir = join(process.cwd(), ".spike-evidence")
 mkdirSync(dir, { recursive: true })
 const logPath = join(dir, "alt-dir-load.jsonl")
 

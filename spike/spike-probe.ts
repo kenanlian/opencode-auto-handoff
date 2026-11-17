@@ -1,6 +1,6 @@
 /**
  * Spike probe for opencode 1.18.25 plugin surface.
- * Writes JSONL evidence under .dev/spike-evidence/. Controlled by env:
+ * Writes JSONL evidence under .spike-evidence/. Controlled by env:
  *   SPIKE_CLEAR=1       splice outgoing messages to last 1 on transform
  *   SPIKE_CONTINUE=1    on first idle, prompt the same session
  *   SPIKE_REVERT=1      on first idle, try session.revert to first user message
@@ -11,7 +11,7 @@
 import { appendFileSync, mkdirSync, writeFileSync } from "node:fs"
 import { join } from "node:path"
 
-const EVIDENCE_DIR = join(process.cwd(), ".dev/spike-evidence")
+const EVIDENCE_DIR = join(process.cwd(), ".spike-evidence")
 mkdirSync(EVIDENCE_DIR, { recursive: true })
 
 const LOG = join(EVIDENCE_DIR, `probe-${process.env.SPIKE_LABEL ?? "default"}.jsonl`)
